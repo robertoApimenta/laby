@@ -1,6 +1,5 @@
 const Funcionario = require('../models/Funcionario');
 const Veiculo = require('../models/Veiculo');
-const Venda = require('../models/Venda');
 const Reserva = require('../models/Reserva');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
@@ -36,21 +35,24 @@ module.exports = {
                     mensagem: "Veículo inexistente.",
                 });
             }
-            if(busca.status === 3){
+            if (busca.status === 3) {
                 return res.status(400).json({
                     mensagem: "Veículo indisponível para reserva.",
                 });
             }
             const vendedor = id;
+            
+            data = new Date(data)
+            //data = ((novaData.getDate() + 1 )) + "/" + ((novaData.getMonth() + 1)) + "/" + novaData.getFullYear();
             var dados = { data, veiculo, valor, vendedor };
             const reserva = await Reserva.create(dados);
             const status = 2;
-            dados = {status}
+            dados = { status }
             await Veiculo.update(dados, {
                 where: { id: veiculo }
             });
             return res.status(200).json({
-                mensagem: 'Veículo registrado com sucesso.',
+                mensagem: 'Veículo reservado com sucesso.',
                 reserva,
             });
         } catch {

@@ -26,6 +26,7 @@ module.exports = {
                 if (!errors.isEmpty() || !cpf || !nome || !email || !senha || !perfil) {
                     return res.status(400).json({
                         mensagem: 'Dados inválidos, tente novamente.',
+                        senha
                     });
                 }
                 const busca = await Funcionario.findOne({ where: { cpf } });

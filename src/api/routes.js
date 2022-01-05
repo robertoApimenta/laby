@@ -35,10 +35,10 @@ routes.post('/novo_veiculo', veiculos.create);
 routes.delete('/deletar_veiculo/:id', veiculos.delete);
 
 //rotas privadas VENDAS
-routes.post('/nova_venda', vendas.create);
+routes.post('/nova_venda', body(['data']).isISO8601(), vendas.create);
 
 //rotas privadas RESERVAS
-routes.post('/nova_reserva', reservas.create);
+routes.post('/nova_reserva',  body(['data']).isISO8601(), reservas.create);
 
 
 module.exports = routes;

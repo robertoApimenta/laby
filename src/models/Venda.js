@@ -9,7 +9,7 @@ const Venda = db.define('vendas', {
         primaryKey: true
     },
     data: {
-        type: Sequelize.STRING,
+        type: Sequelize.DATE,
         allowNull: false
     },
     veiculo:{

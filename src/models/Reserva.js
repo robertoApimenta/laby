@@ -9,7 +9,7 @@ const Reserva = db.define('reservas', {
         primaryKey: true
     },
     data: {
-        type: Sequelize.STRING,
+        type: Sequelize.DATE,
         allowNull: false
     },
     veiculo:{
